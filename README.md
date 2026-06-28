@@ -216,7 +216,7 @@ Predicts continuous returns per holding and surfaces where the model is confiden
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-username>/stock-market-forecasting.git
+git clone https://github.com/emonroy7/stock-market-forecasting.git
 cd stock-market-forecasting
 
 # 2. (Recommended) create a virtual environment
@@ -227,7 +227,7 @@ source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install yfinance pandas numpy scikit-learn tensorflow matplotlib
 
 # 4. Launch the app
-python stock_analysis_app.py
+python gui.py
 ```
 
 Then pick a tab — **Fundamental Analysis**, **Trading Strategy**, **Risk Analysis**, or **Portfolio Analysis** — and click **Run Analysis**.
