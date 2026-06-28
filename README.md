@@ -160,6 +160,48 @@ Per-stock prediction-vs-error charts show where the regressor is confident and w
 
 ---
 
+## 🖥️ Explore the App
+
+The desktop app is one window with four tabs. Click any tab below to expand its screen and see what it does.
+
+<details open>
+<summary><b>🔍 Fundamental Analysis</b> — price forecasting (Feedforward NN)</summary>
+
+<br/>
+<p align="center"><img src="assets/gui_fundamental.png" width="65%" alt="GUI — Fundamental Analysis tab"></p>
+
+Enter a ticker and hit **Run Analysis** to forecast the next price move and compare it against recent history.
+</details>
+
+<details>
+<summary><b>📈 Trading Strategy</b> — up/down signal (Random Forest Classifier)</summary>
+
+<br/>
+<p align="center"><img src="assets/gui_trading.png" width="65%" alt="GUI — Trading Strategy tab"></p>
+
+Uses 50-day and 200-day moving averages to classify whether the next move is up or down, with a directional accuracy readout.
+</details>
+
+<details>
+<summary><b>⚖️ Risk Analysis</b> — volatility (LSTM)</summary>
+
+<br/>
+<p align="center"><img src="assets/gui_risk.png" width="65%" alt="GUI — Risk Analysis tab"></p>
+
+Measures and compares each stock's volatility, mapping risk against returns so trade-offs are visible at a glance.
+</details>
+
+<details>
+<summary><b>💼 Portfolio Analysis</b> — return modeling (Random Forest Regressor)</summary>
+
+<br/>
+<p align="center"><img src="assets/gui_portfolio.png" width="65%" alt="GUI — Portfolio Analysis tab"></p>
+
+Predicts continuous returns per holding and surfaces where the model is confident versus where it drifts.
+</details>
+
+---
+
 ## 🔭 Next Steps
 
 - **Explore advanced techniques** — test transformer-based and hybrid time-series models.
