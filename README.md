@@ -186,7 +186,7 @@ Uses 50-day and 200-day moving averages to classify whether the next move is up 
 <summary><b>⚖️ Risk Analysis</b> — volatility (LSTM)</summary>
 
 <br/>
-<p align="center"><img src="assets/gui_risk.png" width="65%" alt="GUI — Risk Analysis tab"></p>
+<p align="center"><img src="assets/gui_risk.PNG" width="65%" alt="GUI — Risk Analysis tab"></p>
 
 Measures and compares each stock's volatility, mapping risk against returns so trade-offs are visible at a glance.
 </details>
