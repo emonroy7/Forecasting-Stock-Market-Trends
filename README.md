@@ -15,9 +15,6 @@
 
 An end-to-end project that pulls historical market data, trains four machine-learning models, and packages them behind a desktop GUI so a user can run **Fundamental, Trading, Risk, and Portfolio** analysis on major tech stocks from a single app.
 
-> **Author:** Emon Roy
-> **Repository:** `https://github.com/<your-username>/stock-market-forecasting` <!-- replace with your repo URL -->
-
 ---
 
 ## 📋 Table of Contents
@@ -34,8 +31,6 @@ An end-to-end project that pulls historical market data, trains four machine-lea
 
 ## 🚀 Executive Summary
 
-### The Solution
-
 A single desktop application (Python + Tkinter) that wraps four predictive models, each mapped to a real investing question:
 
 | Analysis | Model | Question it answers |
@@ -46,12 +41,6 @@ A single desktop application (Python + Tkinter) that wraps four predictive model
 | **Portfolio Analysis** | Random Forest Regressor | What return/risk trade-off does each holding offer? |
 
 Data is sourced live through the **yfinance** API for five large-cap tech names — **AAPL, MSFT, AMD, INTC, NVDA** — so every analysis runs on real, up-to-date market history.
-
-### A Few Next Steps
-
-- Add explainable-AI outputs (e.g., feature importance, SHAP) so each prediction comes with a reason.
-- Blend in alternative data (news sentiment, macro indicators) to enrich the feature set.
-- Backtest the trading signals against a buy-and-hold baseline before any real-world use.
 
 ### The Number Impact
 
