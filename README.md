@@ -227,7 +227,7 @@ source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install yfinance pandas numpy scikit-learn tensorflow matplotlib
 
 # 4. Launch the app
-python gui.py
+python stock_analysis_app.py
 ```
 
 Then pick a tab — **Fundamental Analysis**, **Trading Strategy**, **Risk Analysis**, or **Portfolio Analysis** — and click **Run Analysis**.
