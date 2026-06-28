@@ -42,10 +42,6 @@ A single desktop application (Python + Tkinter) that wraps four predictive model
 
 Data is sourced live through the **yfinance** API for five large-cap tech names — **AAPL, MSFT, AMD, INTC, NVDA** — so every analysis runs on real, up-to-date market history.
 
-### The Number Impact
-
-Rather than a single headline metric, the value here is **breadth and accessibility**: four distinct modeling techniques — covering price forecasting, directional trading, volatility, and portfolio return — are made usable from one click, turning a multi-notebook research workflow into a tool a non-coder can operate. The models produce **low normalized prediction error** on price forecasting and surface a **clear risk-vs-return ranking** across the five stocks (see [Results](#-results--business-recommendations)).
-
 ---
 
 ## 🧩 Business Problem
@@ -56,31 +52,47 @@ Stock prices are noisy, non-stationary, and emotionally charged — which makes 
 2. **Risk is invisible until it hurts.** Investors often chase returns without a clear, comparable view of how much volatility they are taking on.
 3. **The tooling is fragmented.** Useful techniques live in separate notebooks and libraries, out of reach for anyone who isn't comfortable with code.
 
-The chart below illustrates the core difficulty: predicted values versus the actual price, with the prediction error swinging widely from day to day.
-
-![The forecasting challenge: predicted vs. actual price and error](assets/business_problem.png)
-
-**Goal:** give a beginner investor one place to forecast prices, gauge direction, measure risk, and compare holdings — backed by transparent, reproducible models.
-
 ---
 
 ## 🛠 Methodology
+The diagram below is rendered live by GitHub (Mermaid). It traces a single ticker from raw data, through model selection into the four analyses, and back to a unified evaluation and visualization step.
+```mermaid
+flowchart TD
+    A(["📥 Data Collection<br/>yfinance · AAPL · MSFT · AMD · INTC · NVDA"]) --> B["🧹 Data Preprocessing<br/>clean · scale · feature engineering"]
+    B --> C{"🧠 Model Selection<br/>match model to the task"}
+    C -->|"Price forecast"| D["Feedforward NN<br/><i>Fundamental Analysis</i>"]
+    C -->|"Up / Down signal"| E["Random Forest Classifier<br/><i>Trading Strategy</i>"]
+    C -->|"Volatility"| F["LSTM<br/><i>Risk Analysis</i>"]
+    C -->|"Return"| G["Random Forest Regressor<br/><i>Portfolio Analysis</i>"]
+    D --> H["🏋️ Model Training<br/>Adam · MSE · 100 estimators"]
+    E --> H
+    F --> H
+    G --> H
+    H --> I["📏 Model Evaluation<br/>RMSE · Accuracy"]
+    I --> J(["📊 Prediction & Analysis<br/>visualized in the GUI"])
 
-The pipeline is deliberately simple and repeatable across all four analyses:
+    classDef data fill:#dbeafe,stroke:#1d4ed8,color:#0b2559;
+    classDef proc fill:#ede9fe,stroke:#6d28d9,color:#2e1065;
+    classDef model fill:#dcfce7,stroke:#15803d,color:#052e16;
+    classDef out fill:#fef3c7,stroke:#b45309,color:#451a03;
+    class A,J data;
+    class B,H,I proc;
+    class C,D,E,F,G model;
+```
 
-1. **Data Collection** — pull historical OHLCV data per ticker via `yfinance`.
-2. **Data Preprocessing** — clean, scale (`MinMaxScaler` where needed), engineer features (moving averages, lagged windows, next-day targets), and split into train/test sets.
-3. **Model Selection** — match the model to the task: FNN for price, Random Forest Classifier for direction, LSTM for sequence/volatility, Random Forest Regressor for return.
-4. **Model Training** — fit each model (Keras `Sequential` networks via Adam + MSE; scikit-learn ensembles with 100 estimators).
-5. **Model Evaluation** — score with task-appropriate metrics (RMSE for regression, accuracy for classification).
-6. **Prediction & Analysis** — surface forecasts and visualizations through the GUI for interpretation.
+<details>
+<summary><b>📂 Expand each pipeline step</b></summary>
 
-<p align="center">
-  <img src="assets/gui_fundamental.png" width="46%" alt="GUI — Fundamental Analysis tab">
-  &nbsp;&nbsp;
-  <img src="assets/gui_portfolio.png" width="46%" alt="GUI — Portfolio Analysis tab">
-</p>
-<p align="center"><em>The Tkinter app: pick a tab, hit <strong>Run Analysis</strong>, read the output.</em></p>
+<br/>
+
+- **📥 Data Collection** — `yfinance` pulls historical OHLCV data for the five tickers.
+- **🧹 Data Preprocessing** — clean missing values, `MinMaxScaler` for sequence models, engineer features (50/200-day moving averages, lagged windows, next-day targets), then `train_test_split`.
+- **🧠 Model Selection** — route the task to the right model: price → FNN, direction → RF Classifier, volatility/sequence → LSTM, return → RF Regressor.
+- **🏋️ Model Training** — Keras `Sequential` networks (Adam optimizer, MSE loss) and scikit-learn ensembles (`n_estimators=100`).
+- **📏 Model Evaluation** — RMSE for regression tasks, accuracy for the directional classifier.
+- **📊 Prediction & Analysis** — results are charted and shown back to the user inside the GUI.
+
+</details>
 
 ---
 
