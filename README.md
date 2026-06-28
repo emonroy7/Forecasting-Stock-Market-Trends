@@ -1,1 +1,0 @@
-# Forecasting-Stock-Market-Trends
